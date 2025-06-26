@@ -12,7 +12,8 @@ services:
       MYSQL_PASSWORD: eaglepass
     volumes:
       - db_data:/var/lib/mysql
-      - ./DB/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./DB/initdb/init.sql:/docker-entrypoint-initdb.d/init.sql
+
     ports:
       - "3306:3306"
 
