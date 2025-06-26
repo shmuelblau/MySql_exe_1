@@ -22,17 +22,15 @@ class Agent:
         )
     
     @staticmethod
-    def from_post_request(data):
+    def from_post_request(form):
         return Agent(
-            id= data["id"] if "id" in data else None ,
-            codeName=data["codeName"],
-            realName=data["realName"],
-            location=data["location"],
-            status=data["status"],
-            missionsCompleted=data["missionsCompleted"]
-
+            id=form.get('id'),
+            codeName=form.get('codeName'),
+            realName=form.get('realName'),
+            location=form.get('location'),
+            status=form.get('status'),
+            missionsCompleted=form.get('missionsCompleted')
         )
-
     
 
 

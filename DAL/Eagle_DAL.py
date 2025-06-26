@@ -1,19 +1,12 @@
 import mysql.connector
+from DAL.DAL import DAL
 from Models.Agent import Agent
 
 class Eagle_DAL:
-   
-
-    conn = mysql.connector.connect(
-        host='localhost',
-        user='intel_user',
-        password='intelpass',
-        database='eagleEyeDB',
-        port=3306,
-        auth_plugin='mysql_native_password'
-    )
     
-    
+    def __init__(self):
+        db= DAL("eagleEyeDB")
+        self.conn = db.get_conn()
    
 
     def Select(self):
@@ -44,7 +37,7 @@ class Eagle_DAL:
     def delete(self ,agent):
         cursor = self.conn.cursor()
         query ="""DELETE FROM agents WHERE id = %s"""
-        cursor.execute(query, (agent.id))
+        cursor.execute(query, (agent.id ,))
         self.conn.commit()
         cursor.close()               
 

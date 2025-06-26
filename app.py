@@ -15,26 +15,24 @@ def home():
 
 @app.route('/add' , methods=['POST']) 
 def add():
-    info = request.form.get('inpo')
-    new = Agent.from_post_request(info)
+    new = Agent.from_post_request(request.form)
     dal.add(new)
     return redirect("/")
 
 
 @app.route('/edit' , methods=['POST']) 
 def edit():
-    info = request.form.get('inpo')
-    new = Agent.from_post_request(info)
+    new = Agent.from_post_request(request.form)
     dal.edit(new)
     return redirect("/")
 
 
 @app.route('/delete' , methods=['POST']) 
 def delete():
-    info = request.form.get('inpo')
-    new = Agent.from_post_request(info)
-    dal.delete(new)
+    agent_id = request.form.get('id')
+    agent = Agent(id=agent_id)
+    dal.delete(agent)
     return redirect("/")
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0', port=5000)
